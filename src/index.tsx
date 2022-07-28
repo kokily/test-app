@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { ToastContainer } from 'react-toastify';
 import App from './App';
+import GlobalStyle from './styles';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -9,7 +10,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <GlobalStyle />
     <App />
+    <ToastContainer position="top-right" draggable={false} />
   </React.StrictMode>
 );
 

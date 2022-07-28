@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import useAllPosts from './libs/hooks/useAllPosts';
 
 function App() {
+  const { data, loading } = useAllPosts();
+
+  if (loading) return <h3>Loading...</h3>;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <h2>Test</h2>
+
+      <ListPosts>
+        {data &&
+          data.length > 0 &&
+          data.map((post) => <li key={post.id}>{post.title}</li>)}
+      </ListPosts>
+    </Container>
   );
 }
+
+// Styles
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    margin: 0;
+  }
+`;
+
+const ListPosts = styled.ul``;
 
 export default App;
